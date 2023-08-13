@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: yourdomain-co-tls
+  # 指定证书生成到哪个工作空间，不指定也可以
+  namespace: istio-system
+spec:
+  #生成后证书的配置文件名称
+  secretName: yourdomain-co-tls
+
+  # 指定域名
+  dnsNames:
+  - yourdomain.co
+  - "*.yourdomain.co"
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+---
